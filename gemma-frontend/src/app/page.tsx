@@ -150,7 +150,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-red text-foreground ">
+    <div className="relative h-screen w-full overflow-hidden bg-background text-foreground">
       <SettingsPanel
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
@@ -164,9 +164,9 @@ export default function Home() {
         setRepetitionPenalty={setRepetitionPenalty}
       />
 
-      {/* TODO: Create a real ChatHistoryPanel component */}
+      {/* Chat History Panel */}
       <div
-        className={`fixed inset-y-0 right-0 z-20 w-full max-w-sm transform bg-background shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 right-0 z-30 w-full max-w-md transform bg-background shadow-2xl transition-transform duration-300 ease-in-out ${
           isHistoryOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -204,9 +204,10 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Overlay */}
       {(isSettingsOpen || isHistoryOpen) && (
         <div
-          className="fixed inset-0 z-10 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-20 bg-black/60 backdrop-blur-sm"
           onClick={() => {
             setIsSettingsOpen(false);
             setIsHistoryOpen(false);
@@ -214,7 +215,7 @@ export default function Home() {
         />
       )}
 
-      <main className="flex h-full flex-col">
+      <main className={`flex h-full flex-col transition-transform duration-300 ease-in-out ${isSettingsOpen ? "translate-x-[22rem]" : ""} ${isHistoryOpen ? "-translate-x-[22rem]" : ""}`}>
         <header className="flex items-center justify-between border-b border-border p-4">
           <button
             onClick={() => setIsSettingsOpen(true)}

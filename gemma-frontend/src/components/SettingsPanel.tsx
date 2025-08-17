@@ -51,7 +51,7 @@ export const SettingsPanel = ({
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-20 w-full max-w-sm transform bg-background shadow-2xl transition-transform duration-300 ease-in-out ${
+      className={`fixed inset-y-0 left-0 z-30 w-full max-w-sm transform bg-background shadow-2xl transition-transform duration-300 ease-in-out will-change-transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
