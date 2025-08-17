@@ -1,36 +1,106 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* radius scale */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* === Converted Old HSL into OKLCH === */
+  --background: oklch(14.48% 0.02 260);
+  /* deep navy */
+  --foreground: oklch(98% 0.01 250);
+  /* light text */
+
+  --card: oklch(14.48% 0.02 260);
+  --card-foreground: oklch(98% 0.01 250);
+
+  --popover: oklch(14.48% 0.02 260);
+  --popover-foreground: oklch(98% 0.01 250);
+
+  --primary: oklch(70% 0.22 260);
+  /* vibrant blue */
+  --primary-foreground: oklch(98% 0.01 250);
+
+  --secondary: oklch(22% 0.03 280);
+  /* subtle gray */
+  --secondary-foreground: oklch(95% 0.01 250);
+
+  --muted: oklch(22% 0.03 280);
+  --muted-foreground: oklch(56% 0.05 280);
+
+  --accent: oklch(70% 0.2 140);
+  /* fresh green */
+  --accent-foreground: oklch(20% 0.08 150);
+
+  --destructive: oklch(55% 0.25 25);
+  /* strong red */
+  --destructive-foreground: oklch(98% 0.01 250);
+
+  --border: oklch(25% 0.03 280);
+  --input: oklch(25% 0.03 280);
+  --ring: oklch(85% 0.1 260);
+}
+
+.dark {
+  --background: oklch(14.48% 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(22% 0.03 280);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(22% 0.03 280);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(70% 0.22 260);
+  --primary-foreground: oklch(14.48% 0 0);
+
+  --secondary: oklch(30% 0.04 280);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(30% 0.04 280);
+  --muted-foreground: oklch(70% 0.05 280);
+
+  --accent: oklch(25% 0.08 150);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.527 0.154 150.069);
+}
 
 @layer base {
-  :root {
-    --background: hsl(222.2 84% 4.9%);         /* Deep navy background */
-    --foreground: hsl(210 40% 98%);            /* Light text */
-
-    --card: hsl(222.2 84% 4.9%);               /* Card background same as bg */
-    --card-foreground: hsl(210 40% 98%);
-
-    --popover: hsl(222.2 84% 4.9%);
-    --popover-foreground: hsl(210 40% 98%);
-
-    --primary: hsl(217.2 91.2% 59.8%);         /* Vibrant blue */
-    --primary-foreground: hsl(210 40% 98%);
-
-    --secondary: hsl(240 3.7% 15.9%);          /* Subtle gray */
-    --secondary-foreground: hsl(210 40% 98%);
-
-    --muted: hsl(240 3.7% 15.9%);
-    --muted-foreground: hsl(215.4 16.3% 56.9%);
-
-    --accent: hsl(142.1 70.6% 45.3%);          /* Fresh green for highlights */
-    --accent-foreground: hsl(144.9 80.4% 10%);
-
-    --destructive: hsl(0 72.2% 50.6%);         /* Strong red for errors */
-    --destructive-foreground: hsl(210 40% 98%);
-
-    --border: hsl(217.2 32.6% 17.5%);
-    --input: hsl(217.2 32.6% 17.5%);
-    --ring: hsl(212.7 26.8% 83.9%);
+  * {
+    @apply border-border outline-ring/50;
   }
 
   body {
@@ -39,37 +109,64 @@
   }
 }
 
+/* === Animations (converted to utilities) === */
 @layer utilities {
-    @keyframes slide-in {
-        0% { transform: translateX(-100%); opacity: 0; }
-        100% { transform: translateX(0); opacity: 1; }
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
     }
-    @keyframes slide-out {
-        0% { transform: translateX(0); opacity: 1; }
-        100% { transform: translateX(-100%); opacity: 0; }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
     }
-    @keyframes fade-in-up {
-        0% { opacity: 0; transform: translateY(10px); }
-        100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
     }
-    .animate-slide-in {
-        animation: slide-in 0.3s ease-out forwards;
+
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
     }
-    .animate-slide-out {
-        animation: slide-out 0.3s ease-in forwards;
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
     }
-    .animate-fade-in-up {
-        animation: fade-in-up 0.5s ease-out forwards;
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+
+  .animate-slide-out {
+    animation: slide-out 0.3s ease-in forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+  }
 }
 
-/* Custom Slider Styles */
+/* === Custom Slider === */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 4px;
-  background: hsl(var(--secondary));
+  background: var(--secondary);
   border-radius: 5px;
   outline: none;
 }
@@ -79,7 +176,7 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
-  background: hsl(var(--primary));
+  background: var(--primary);
   cursor: pointer;
   border-radius: 50%;
 }
@@ -87,25 +184,25 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: hsl(var(--primary));
+  background: var(--primary);
   cursor: pointer;
   border-radius: 50%;
 }
 
-/* Custom Scrollbar */
+/* === Custom Scrollbar === */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--secondary));
+  background: var(--secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground));
+  background: var(--muted-foreground);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--accent-foreground));
+  background: var(--accent-foreground);
 }
