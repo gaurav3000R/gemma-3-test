@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# CORS middleware setup
+# CORS middleware setup.
 origins = [
     "http://localhost:3000",  # Next.js frontend
 ]
