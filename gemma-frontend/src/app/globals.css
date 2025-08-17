@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: hsl(222.2 84% 4.9%);         /* Deep navy background */
+    --foreground: hsl(210 40% 98%);            /* Light text */
+
+    --card: hsl(222.2 84% 4.9%);               /* Card background same as bg */
+    --card-foreground: hsl(210 40% 98%);
+
+    --popover: hsl(222.2 84% 4.9%);
+    --popover-foreground: hsl(210 40% 98%);
+
+    --primary: hsl(217.2 91.2% 59.8%);         /* Vibrant blue */
+    --primary-foreground: hsl(210 40% 98%);
+
+    --secondary: hsl(240 3.7% 15.9%);          /* Subtle gray */
+    --secondary-foreground: hsl(210 40% 98%);
+
+    --muted: hsl(240 3.7% 15.9%);
+    --muted-foreground: hsl(215.4 16.3% 56.9%);
+
+    --accent: hsl(142.1 70.6% 45.3%);          /* Fresh green for highlights */
+    --accent-foreground: hsl(144.9 80.4% 10%);
+
+    --destructive: hsl(0 72.2% 50.6%);         /* Strong red for errors */
+    --destructive-foreground: hsl(210 40% 98%);
+
+    --border: hsl(217.2 32.6% 17.5%);
+    --input: hsl(217.2 32.6% 17.5%);
+    --ring: hsl(212.7 26.8% 83.9%);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+    @keyframes slide-in {
+        0% { transform: translateX(-100%); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slide-out {
+        0% { transform: translateX(0); opacity: 1; }
+        100% { transform: translateX(-100%); opacity: 0; }
+    }
+    @keyframes fade-in-up {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slide-in {
+        animation: slide-in 0.3s ease-out forwards;
+    }
+    .animate-slide-out {
+        animation: slide-out 0.3s ease-in forwards;
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.5s ease-out forwards;
+    }
+}
+
+/* Custom Slider Styles */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: hsl(var(--secondary));
+  border-radius: 5px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: hsl(var(--primary));
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: hsl(var(--primary));
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent-foreground));
+}
