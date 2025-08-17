@@ -4,11 +4,7 @@
 import { useEffect, useRef } from "react";
 import { ChatBubble, LoadingBubble } from "./ChatBubble";
 import { Welcome } from "./Welcome";
-
-interface Message {
-  text: string;
-  isUser: boolean;
-}
+import { Message } from "../app/page"; // Import the Message type
 
 interface ChatHistoryProps {
   messages: Message[];
@@ -31,7 +27,7 @@ export const ChatHistory = ({ messages, isLoading }: ChatHistoryProps) => {
           <Welcome />
         ) : (
           messages.map((msg, index) => (
-            <ChatBubble key={index} text={msg.text} isUser={msg.isUser} />
+            <ChatBubble key={index} message={msg} />
           ))
         )}
         {isLoading && <LoadingBubble />}
